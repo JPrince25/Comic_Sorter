@@ -287,3 +287,4 @@ for marvelCharacter in marvelIssueCharacters:
 marvelDataFrame = pd.DataFrame(marvelNovelSalesData,columns=monthList, index = marvelName)
 marvelDataFrame.to_excel("MarvelIssueCharacterSalesData.xlsx")
 
+

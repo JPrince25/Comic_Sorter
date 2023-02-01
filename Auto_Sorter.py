@@ -1,4 +1,6 @@
 import pandas as pd
+import requests
+from bs4 import BeautifulSoup
 
 class CharacterComics():
     def __init__(self, name):
@@ -68,6 +70,13 @@ comicExpiration = []
 
 issueCount = []
 
+dcURL = "https://dc.fandom.com/wiki/"
+marvelURL = "https://marvel.fandom.com/wiki/"
+
+marvelNames = pd.read_excel('MarvelNames.xlsx', sheet_name= "Titles", names=['DC','Track','Super','DataBaseTitle','Group','Group Name','Vol 1 Month Start','Vol 1 Year Start','Vol 1 Issue Start','Vol 1 Month End','Vol 1 Year End','Vol 1 Issue End','Vol 2 Month Start','Vol 2 Year Start','Vol 2 Issue Start','Vol 2 Month End','Vol 2 Year End','Vol 2 Issue End','Vol 3 Month Start','Vol 3 Year Start','Vol 3 Issue Start','Vol 3 Month End','Vol 3 Year End','Vol 3 Issue End','Vol 4 Month Start','Vol 4 Year Start','Vol 4 Issue Start','Vol 4 Month End','Vol 4 Year End','Vol 4 Issue End','Vol 5 Month Start','Vol 5 Year Start','Vol 5 Issue Start','Vol 5 Month End','Vol 5 Year End','Vol 5 Issue End','Vol 6 Month Start','Vol 6 Year Start','Vol 6 Issue Start','Vol 6 Month End','Vol 6 Year End','Vol 6 Issue End','Vol 7 Month Start','Vol 7 Year Start','Vol 7 Issue Start','Vol 7 Month End','Vol 7 Year End','Vol 7 Issue End','Vol 8 Month Start','Vol 8 Year Start','Vol 8 Issue Start','Vol 8 Month End','Vol 8 Year End','Vol 8 Issue End','Vol 9 Month Start','Vol 9 Year Start','Vol 9 Issue Start','Vol 9 Month End','Vol 9 Year End','Vol 9 Issue End','Vol 10 Month Start','Vol 10 Year Start','Vol 10 Issue Start','Vol 10 Month End','Vol 10 Year End','Vol 10 Issue End','Vol 11 Month Start','Vol 11 Year Start','Vol 11 Issue Start','Vol 11 Month End','Vol 11 Year End','Vol 11 Issue End','Vol 12 Month Start','Vol 12 Year Start','Vol 12 Issue Start','Vol 12 Month End','Vol 12 Year End','Vol 12 Issue End'])
+dcNames = pd.read_excel('DCNames.xlsx', sheet_name= "Titles", names=['DC','Track','Super','DataBaseTitle','Group','Group Name','Vol 1 Month Start','Vol 1 Year Start','Vol 1 Issue Start','Vol 1 Month End','Vol 1 Year End','Vol 1 Issue End','Vol 2 Month Start','Vol 2 Year Start','Vol 2 Issue Start','Vol 2 Month End','Vol 2 Year End','Vol 2 Issue End','Vol 3 Month Start','Vol 3 Year Start','Vol 3 Issue Start','Vol 3 Month End','Vol 3 Year End','Vol 3 Issue End','Vol 4 Month Start','Vol 4 Year Start','Vol 4 Issue Start','Vol 4 Month End','Vol 4 Year End','Vol 4 Issue End','Vol 5 Month Start','Vol 5 Year Start','Vol 5 Issue Start','Vol 5 Month End','Vol 5 Year End','Vol 5 Issue End','Vol 6 Month Start','Vol 6 Year Start','Vol 6 Issue Start','Vol 6 Month End','Vol 6 Year End','Vol 6 Issue End','Vol 7 Month Start','Vol 7 Year Start','Vol 7 Issue Start','Vol 7 Month End','Vol 7 Year End','Vol 7 Issue End','Vol 8 Month Start','Vol 8 Year Start','Vol 8 Issue Start','Vol 8 Month End','Vol 8 Year End','Vol 8 Issue End','Vol 9 Month Start','Vol 9 Year Start','Vol 9 Issue Start','Vol 9 Month End','Vol 9 Year End','Vol 9 Issue End','Vol 10 Month Start','Vol 10 Year Start','Vol 10 Issue Start','Vol 10 Month End','Vol 10 Year End','Vol 10 Issue End','Vol 11 Month Start','Vol 11 Year Start','Vol 11 Issue Start','Vol 11 Month End','Vol 11 Year End','Vol 11 Issue End','Vol 12 Month Start','Vol 12 Year Start','Vol 12 Issue Start','Vol 12 Month End','Vol 12 Year End','Vol 12 Issue End'])
+    
+
 while (year < 2020 or month!=4):
     if (month == 1):
         monthC = "01"
@@ -100,6 +109,7 @@ while (year < 2020 or month!=4):
     marvelIssueData = issueData.apply(lambda r: r.astype('string').str.contains(marvel).any(), axis=1)
     dcIssueData = issueData.apply(lambda r: r.astype('string').str.contains(dc).any(), axis=1)
     
+
     #for index, row in issueData[marvelIssueData].iterrows():
     #    if(index > 300):
     #       break
@@ -117,12 +127,57 @@ while (year < 2020 or month!=4):
         comicTitle = row['Comic-Title']
         sales = row['Sales']
         units = row['Units']
-        issueNum = row['Issue']
-        if (issueNum not in issueCount):
-            issueCount.append(issueNum)
+        issueString = row['Issue']
+        dcTitleWikiURL = dcURL
+        if comicTitle in ['Batman']:
+            try: 
+                issueNum = int(issueString)
+                test = issueNum / 2
+            except:
+                issueNum = int(input(issueString + "\n>>>"))
             print(comicTitle)
-            print(issueNum)
-            
+            print(issueString)
+            for index, nameRow in dcNames.iterrows():
+                if comicTitle in nameRow['DC']:
+                    if nameRow['Track'] == 1 and nameRow['Super'] == 1:
+                        dcTitleWikiURL = dcTitleWikiURL + nameRow['DataBaseTitle'] + "_Vol_" 
+                        if year <= nameRow['Vol 1 Year End'] and year >= nameRow['Vol 1 Year Start']:
+                            if issueNum <= float(nameRow['Vol 1 Issue End']) and issueNum >= float(nameRow['Vol 1 Issue Start']):
+                                if year == float(nameRow['Vol 1 Year Start'] and month >= int(nameRow['Vol 1 Month Start'])):
+                                    dcTitleWikiURL = dcTitleWikiURL + "1_" + str(issueNum) 
+                                    print (dcTitleWikiURL)
+                                elif year == float(nameRow['Vol 1 Year End'] and month <= int(nameRow['Vol 1 Month End'])):
+                                    dcTitleWikiURL = dcTitleWikiURL + "1_" + str(issueNum) 
+                                    print (dcTitleWikiURL)
+                                else:
+                                    dcTitleWikiURL = dcTitleWikiURL + "1_" + str(issueNum) 
+                                    print (dcTitleWikiURL)
+                        if year <= nameRow['Vol 2 Year End'] and year >= nameRow['Vol 2 Year Start']:
+                            if issueNum <= float(nameRow['Vol 2 Issue End']) and issueNum >= float(nameRow['Vol 2 Issue Start']):
+                                if year == float(nameRow['Vol 2 Year Start'] and month >= int(nameRow['Vol 2 Month Start'])):
+                                    dcTitleWikiURL = dcTitleWikiURL + "2_" + str(issueNum) 
+                                    print (dcTitleWikiURL)
+                                elif year == float(nameRow['Vol 2 Year End'] and month <= int(nameRow['Vol 2 Month End'])):
+                                    dcTitleWikiURL = dcTitleWikiURL + "2_" + str(issueNum) 
+                                    print (dcTitleWikiURL)
+                                else:
+                                    dcTitleWikiURL = dcTitleWikiURL + "2_" + str(issueNum) 
+                                    print (dcTitleWikiURL)
+                        if year <= nameRow['Vol 3 Year End'] and year >= nameRow['Vol 3 Year Start']:
+                            if issueNum <= float(nameRow['Vol 3 Issue End']) and issueNum >= float(nameRow['Vol 3 Issue Start']):
+                                if year == float(nameRow['Vol 3 Year Start'] and month >= int(nameRow['Vol 3 Month Start'])):
+                                    dcTitleWikiURL = dcTitleWikiURL + "3_" + str(issueNum) 
+                                    print (dcTitleWikiURL)
+                                if year == float(nameRow['Vol 3 Year End'] and month <= int(nameRow['Vol 3 Month End'])):
+                                    dcTitleWikiURL = dcTitleWikiURL + "3_" + str(issueNum) 
+                                    print (dcTitleWikiURL)
+                                else:
+                                    dcTitleWikiURL = dcTitleWikiURL + "3_" + str(issueNum) 
+                                    print (dcTitleWikiURL)
+                        issuePage = requests.get(URL) 
+                        soup = BeautifulSoup(page.content, "html.parser") 
+                        
+                    break  
     
     monthCol = monthCol + 1
     if (month == 12):
