@@ -151,6 +151,7 @@ while (year < 2020 or month!=4):
                     #     print(str(month) +" / " + str(year))
                     #     print(comicTitle)
                     #     print(issueString)
+                    
                     dcTitleWikiURL = dcTitleWikiURL + nameRow['DataBaseTitle'] + "_Vol_" 
                     if year <= nameRow['Vol 1 Year End'] and year >= nameRow['Vol 1 Year Start']:
                         if issueNum <= float(nameRow['Vol 1 Issue End']) and issueNum >= float(nameRow['Vol 1 Issue Start']):
@@ -376,12 +377,20 @@ while (year < 2020 or month!=4):
     else: 
         month = month + 1
 dcIssueSalesData = []
+dcIssueUnitsData = []
+dcIssueComicsInData = []
 dcCharacterNames = []
 for dcCharacter in dcCharacterList:
     dcIssueSalesData.append(dcCharacter.characterSales)
+    dcIssueUnitsData.append(dcCharacter.characterUnits)
+    dcIssueComicsInData.append(dcCharacter.comicsIn)
     dcCharacterNames.append(str(dcCharacter.name))
 dcDataFrame = pd.DataFrame(dcIssueSalesData,columns=monthList, index = dcCharacterNames)
-dcDataFrame.to_excel("DcIssueCharacterSalesDataTEST2.xlsx")
+dcDataFrame.to_excel("DcIssueCharacterSalesData.xlsx")
+dcDataFrame = pd.DataFrame(dcIssueUnitsData,columns=monthList, index = dcCharacterNames)
+dcDataFrame.to_excel("DcIssueCharacterUnitsData.xlsx")
+dcDataFrame = pd.DataFrame(dcIssueComicsInData,columns=monthList, index = dcCharacterNames)
+dcDataFrame.to_excel("DcIssueCharacterComicsInData.xlsx")
     
 
 
