@@ -330,13 +330,14 @@ while (year < 2020 or month!=4):
                 page = requests.get(dcTitleWikiURL) 
                 soup = BeautifulSoup(page.content, "html.parser")
                 characterLinks = []
+                printCounter = 1
                 for f in soup.find_all('b', string=["Featured Characters:","Supporting Characters:","Antagonists:"]):
                     featured = f.find_next('ul').find_all('a')
                     for link in featured:
                         if (link.get('href') not in characterLinks):
                             characterLinks.append(link.get('href'))
                 for character in characterLinks:
-                    print('Searching Character')
+                    #print('Searching Character')
                     dcCharacterURL = 'https://dc.fandom.com' + character
                     characterPage = requests.get(dcCharacterURL)
                     characterSoup = BeautifulSoup(characterPage.content, "html.parser")
@@ -365,7 +366,9 @@ while (year < 2020 or month!=4):
                         newChar.addSale(sales,monthCol)
                         newChar.addComic(comicTitle)
                         newChar.addComicIn(monthCol)
-                    print('Character Recorded ('+characterName+")")
+                    if (printCounter == 1):
+                        printCounter = 2
+                        print('Character Recorded ('+characterName+")")
             except:
                 print(str(month) +" / " + str(year))
                 print(comicTitle)
