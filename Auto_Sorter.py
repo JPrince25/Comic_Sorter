@@ -383,17 +383,17 @@ dcIssueSalesData = []
 dcIssueUnitsData = []
 dcIssueComicsInData = []
 dcCharacterNames = []
-for dcCharacter in dcCharacterList:
-    dcIssueSalesData.append(dcCharacter.characterSales)
-    dcIssueUnitsData.append(dcCharacter.characterUnits)
-    dcIssueComicsInData.append(dcCharacter.comicsIn)
-    dcCharacterNames.append(str(dcCharacter.name))
-dcDataFrame = pd.DataFrame(dcIssueSalesData,columns=monthList, index = dcCharacterNames)
-dcDataFrame.to_excel("DcIssueCharacterSalesData.xlsx")
-dcDataFrame = pd.DataFrame(dcIssueUnitsData,columns=monthList, index = dcCharacterNames)
-dcDataFrame.to_excel("DcIssueCharacterUnitsData.xlsx")
-dcDataFrame = pd.DataFrame(dcIssueComicsInData,columns=monthList, index = dcCharacterNames)
-dcDataFrame.to_excel("DcIssueCharacterComicsInData.xlsx")
+# for dcCharacter in dcCharacterList:
+#     dcIssueSalesData.append(dcCharacter.characterSales)
+#     dcIssueUnitsData.append(dcCharacter.characterUnits)
+#     dcIssueComicsInData.append(dcCharacter.comicsIn)
+#     dcCharacterNames.append(str(dcCharacter.name))
+# dcDataFrame = pd.DataFrame(dcIssueSalesData,columns=monthList, index = dcCharacterNames)
+# dcDataFrame.to_excel("DcIssueCharacterSalesData.xlsx")
+# dcDataFrame = pd.DataFrame(dcIssueUnitsData,columns=monthList, index = dcCharacterNames)
+# dcDataFrame.to_excel("DcIssueCharacterUnitsData.xlsx")
+# dcDataFrame = pd.DataFrame(dcIssueComicsInData,columns=monthList, index = dcCharacterNames)
+# dcDataFrame.to_excel("DcIssueCharacterComicsInData.xlsx")
     
 
 
