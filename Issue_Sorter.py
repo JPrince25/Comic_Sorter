@@ -8,6 +8,7 @@ class Titles():
         self.name = name
         self.monthlyTitleSales = [0]*147
         self.monthlyTitleUnits = [0]*147
+
         self.issueNumber = []
         self.volNumber = []
         self.issueSales = []
@@ -15,22 +16,27 @@ class Titles():
         self.mainCharacters = []
     
     def addTitleSale(self,sale,col):
-        self.titleSales[col] = self.titleSales[col] = sale
+        self.monthlyTitleSales[col] = self.monthlyTitleSales[col] + sale
     
     def addTitileUnit(self,unit,col):
-        self.titleUnits[col] = self.titleUnits[col] = unit
+        self.monthlyTitleUnits[col] = self.monthlyTitleUnits[col] + unit
         
+    def addUnits(self,unit):
+        self.issueUnits.append(unit)
+
+    def addSales(self,sale):
+        self.issueSales.append(sale)
+
     def addIssueNumber(self,number):
         self.issueNumber.append(number)
         
-    def addIssueSale(self,sale):
-        self.issueSales.append(sale)
-    
-    def addIssueUnit(self,unit):
-        self.issueUnits.append(unit)
-        
     def addCharacter(self,character):
         self.mainCharacters.append(character)
+    
+    def addVol(self,vol):
+        self.volNumber.append(vol)
+  
+
     
     
 marvel = 'Marvel'
@@ -51,7 +57,6 @@ issueCount = []
 
 dcTitleList = []
 dcCharacterString = []
-
 dcURL = "https://dc.fandom.com/wiki/"
 marvelURL = "https://marvel.fandom.com/wiki/"
 
@@ -111,6 +116,7 @@ while (year < 2020 or month!=4):
         units = row['Units']
         issueString = row['Issue']
         dcTitleWikiURL = dcURL
+        vol = 1
         tracked = False
         for index, nameRow in dcNames.iterrows():
             if comicTitle in nameRow['DC']:
@@ -121,186 +127,155 @@ while (year < 2020 or month!=4):
                     else:
                         issueNum = float(issueString)
                     dcTitleWikiURL = dcTitleWikiURL + nameRow['DataBaseTitle'] + "_Vol_" 
+                    comicTitle = nameRow['DataBaseTitle']
                     if year <= nameRow['Vol 1 Year End'] and year >= nameRow['Vol 1 Year Start']:
                         if issueNum <= float(nameRow['Vol 1 Issue End']) and issueNum >= float(nameRow['Vol 1 Issue Start']):
                             if (year == int(nameRow['Vol 1 Year Start']) and month >= int(nameRow['Vol 1 Month Start'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "1_" + str(issueNum) 
-                                print (dcTitleWikiURL)
+                                vol = 1
                             elif (year == int(nameRow['Vol 1 Year End']) and month <= int(nameRow['Vol 1 Month End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "1_" + str(issueNum) 
-                                print (dcTitleWikiURL)
+                                vol = 1
                             elif (year > int(nameRow['Vol 1 Year Start']) and year < int(nameRow['Vol 1 Year End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "1_" + str(issueNum) 
-                                print (dcTitleWikiURL)
+                                vol = 1
                     if year <= nameRow['Vol 2 Year End'] and year >= nameRow['Vol 2 Year Start']:
                         if issueNum <= float(nameRow['Vol 2 Issue End']) and issueNum >= float(nameRow['Vol 2 Issue Start']):
                             if (year == int(nameRow['Vol 2 Year Start']) and month >= int(nameRow['Vol 2 Month Start'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "2_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('a')
+                                vol = 2
                             elif (year == int(nameRow['Vol 2 Year End']) and month <= int(nameRow['Vol 2 Month End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "2_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print(str(nameRow['Vol 2 Year End']) +" / " + str(nameRow['Vol 2 Month End']))
-                                print('b')
+                                vol = 2
                             elif (year > int(nameRow['Vol 2 Year Start']) and year < int(nameRow['Vol 2 Year End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "2_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('c')
+                                vol = 2
                     if year <= nameRow['Vol 3 Year End'] and year >= nameRow['Vol 3 Year Start']:
                         if issueNum <= int(nameRow['Vol 3 Issue End']) and issueNum >= int(nameRow['Vol 3 Issue Start']):
                             if (year == int(nameRow['Vol 3 Year Start']) and month >= int(nameRow['Vol 3 Month Start'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "3_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('a')
+                                vol = 3
                             elif (year == int(nameRow['Vol 3 Year End']) and month <= int(nameRow['Vol 3 Month End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "3_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('b')
+                                vol = 3
                             elif (year > int(nameRow['Vol 3 Year Start']) and year < int(nameRow['Vol 3 Year End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "3_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('c')
+                                vol = 3
                     if year <= nameRow['Vol 4 Year End'] and year >= nameRow['Vol 4 Year Start']:
                         if issueNum <= int(nameRow['Vol 4 Issue End']) and issueNum >= int(nameRow['Vol 4 Issue Start']):
                             if (year == int(nameRow['Vol 4 Year Start']) and month >= int(nameRow['Vol 4 Month Start'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "4_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('a')
+                                vol = 4
                             elif (year == int(nameRow['Vol 4 Year End']) and month <= int(nameRow['Vol 4 Month End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "4_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('b')
+                                vol = 4
                             elif (year > int(nameRow['Vol 4 Year Start']) and year < int(nameRow['Vol 4 Year End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "4_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('c')
+                                vol = 4
                     if year <= nameRow['Vol 5 Year End'] and year >= nameRow['Vol 5 Year Start']:
                         if issueNum <= int(nameRow['Vol 5 Issue End']) and issueNum >= int(nameRow['Vol 5 Issue Start']):
                             if (year == int(nameRow['Vol 5 Year Start']) and month >= int(nameRow['Vol 5 Month Start'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "5_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('a')
+                                vol = 5
                             elif (year == int(nameRow['Vol 5 Year End']) and month <= int(nameRow['Vol 5 Month End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "5_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('b')
+                                vol = 5
                             elif (year > int(nameRow['Vol 5 Year Start']) and year < int(nameRow['Vol 5 Year End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "5_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('c')
+                                vol = 5
                     if year <= nameRow['Vol 6 Year End'] and year >= nameRow['Vol 6 Year Start']:
                         if issueNum <= int(nameRow['Vol 6 Issue End']) and issueNum >= int(nameRow['Vol 6 Issue Start']):
                             if (year == int(nameRow['Vol 6 Year Start']) and month >= int(nameRow['Vol 6 Month Start'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "6_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('a')
+                                vol = 6
                             elif (year == int(nameRow['Vol 6 Year End']) and month <= int(nameRow['Vol 6 Month End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "6_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('b')
+                                vol = 6
                             elif (year > int(nameRow['Vol 6 Year Start']) and year < int(nameRow['Vol 6 Year End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "6_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('c')
+                                vol = 6
                     if year <= nameRow['Vol 7 Year End'] and year >= nameRow['Vol 7 Year Start']:
                         if issueNum <= int(nameRow['Vol 7 Issue End']) and issueNum >= int(nameRow['Vol 7 Issue Start']):
                             if (year == int(nameRow['Vol 7 Year Start']) and month >= int(nameRow['Vol 7 Month Start'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "7_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('a')
+                                vol = 7
                             elif (year == int(nameRow['Vol 7 Year End']) and month <= int(nameRow['Vol 7 Month End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "7_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('b')
+                                vol = 7
                             elif (year > int(nameRow['Vol 7 Year Start']) and year < int(nameRow['Vol 7 Year End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "7_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('c')
+                                vol = 7
                     if year <= nameRow['Vol 8 Year End'] and year >= nameRow['Vol 8 Year Start']:
                         if issueNum <= int(nameRow['Vol 8 Issue End']) and issueNum >= int(nameRow['Vol 8 Issue Start']):
                             if (year == int(nameRow['Vol 8 Year Start']) and month >= int(nameRow['Vol 8 Month Start'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "8_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('a')
+                                vol = 8
                             elif (year == int(nameRow['Vol 8 Year End']) and month <= int(nameRow['Vol 8 Month End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "8_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('b')
+                                vol = 8
                             elif (year > int(nameRow['Vol 8 Year Start']) and year < int(nameRow['Vol 8 Year End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "8_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('c')
+                                vol = 8
                     if year <= nameRow['Vol 9 Year End'] and year >= nameRow['Vol 9 Year Start']:
                         if issueNum <= int(nameRow['Vol 9 Issue End']) and issueNum >= int(nameRow['Vol 9 Issue Start']):
                             if (year == int(nameRow['Vol 9 Year Start']) and month >= int(nameRow['Vol 9 Month Start'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "9_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('a')
+                                vol = 9
                             elif (year == int(nameRow['Vol 9 Year End']) and month <= int(nameRow['Vol 9 Month End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "9_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('b')
+                                vol = 9
                             elif (year > int(nameRow['Vol 9 Year Start']) and year < int(nameRow['Vol 9 Year End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "9_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('c')
+                                vol = 9
                     if year <= nameRow['Vol 10 Year End'] and year >= nameRow['Vol 10 Year Start']:
                         if issueNum <= int(nameRow['Vol 10 Issue End']) and issueNum >= int(nameRow['Vol 10 Issue Start']):
                             if (year == int(nameRow['Vol 10 Year Start']) and month >= int(nameRow['Vol 10 Month Start'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "10_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('a')
+                                vol = 10
                             elif (year == int(nameRow['Vol 10 Year End']) and month <= int(nameRow['Vol 10 Month End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "10_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('b')
+                                vol = 10
                             elif (year > int(nameRow['Vol 10 Year Start']) and year < int(nameRow['Vol 10 Year End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "10_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('c')
+                                vol = 10
                     if year <= nameRow['Vol 11 Year End'] and year >= nameRow['Vol 11 Year Start']:
                         if issueNum <= int(nameRow['Vol 11 Issue End']) and issueNum >= int(nameRow['Vol 11 Issue Start']):
                             if (year == int(nameRow['Vol 11 Year Start']) and month >= int(nameRow['Vol 11 Month Start'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "11_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('a')
+                                vol = 11
                             elif (year == int(nameRow['Vol 11 Year End']) and month <= int(nameRow['Vol 11 Month End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "11_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('b')
+                                vol = 11
                             elif (year > int(nameRow['Vol 11 Year Start']) and year < int(nameRow['Vol 11 Year End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "11_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('c')
+                                vol = 11
                     if year <= nameRow['Vol 12 Year End'] and year >= nameRow['Vol 12 Year Start']:
                         if issueNum <= int(nameRow['Vol 12 Issue End']) and issueNum >= int(nameRow['Vol 12 Issue Start']):
                             if (year == int(nameRow['Vol 12 Year Start']) and month >= int(nameRow['Vol 12 Month Start'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "12_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('a')
+                                vol = 12
                             elif (year == int(nameRow['Vol 12 Year End']) and month <= int(nameRow['Vol 12 Month End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "12_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('b')
+                                vol = 12
                             elif (year > int(nameRow['Vol 12 Year Start']) and year < int(nameRow['Vol 12 Year End'])):
                                 dcTitleWikiURL = dcTitleWikiURL + "12_" + str(issueNum) 
-                                print (dcTitleWikiURL)
-                                print('c')  
+                                vol = 12
                     if (nameRow['Track'] == 3):
                         extension = nameRow['Group Name']
-                        dcTitleWikiURL = dcTitleWikiURL + "_" + str(extension)
-                        print (dcTitleWikiURL)
-                        print('d')  
+                        dcTitleWikiURL = dcTitleWikiURL + str(extension)
                     break     
         if (tracked): 
-            
+            if comicTitle not in dcTitleList:
+                newTitle = Titles(comicTitle)
+                dcTitleList.append(newTitle)
+                dcCharacterString.append(comicTitle)
+                newTitle.addTitleSale(sales,monthCol)
+                newTitle.addTitleUnit(units,monthCol)
             try:     
                 page = requests.get(dcTitleWikiURL) 
                 soup = BeautifulSoup(page.content, "html.parser")
                 characterLinks = []
-                printCounter = 1
-                for f in soup.find_all('b', string=["Featured Characters:","Supporting Characters:","Antagonists:"]):
+                for f in soup.find_all('b', string=["Featured Characters:"]):
                     featured = f.find_next('ul').find_all('a')
                     for link in featured:
                         if (link.get('href') not in characterLinks):
@@ -335,9 +310,6 @@ while (year < 2020 or month!=4):
                         newChar.addSale(sales,monthCol)
                         newChar.addComic(comicTitle)
                         newChar.addComicIn(monthCol)
-                    if (printCounter == 1):
-                        printCounter = 2
-                        print('Character Recorded ('+characterName+")")
             except:
                 print(str(month) +" / " + str(year))
                 print(comicTitle)
