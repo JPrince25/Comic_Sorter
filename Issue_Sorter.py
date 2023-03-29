@@ -2,6 +2,7 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 import re
+from pandas import ExcelWriter
 
 class Titles():
     def __init__(self,name):
@@ -18,7 +19,7 @@ class Titles():
     def addTitleSale(self,sale,col):
         self.monthlyTitleSales[col] = self.monthlyTitleSales[col] + sale
     
-    def addTitileUnit(self,unit,col):
+    def addTitleUnit(self,unit,col):
         self.monthlyTitleUnits[col] = self.monthlyTitleUnits[col] + unit
         
     def addUnits(self,unit):
@@ -64,7 +65,7 @@ marvelNames = pd.read_excel('MarvelNames.xlsx', sheet_name= "Titles", names=['DC
 dcNames = pd.read_excel('DCNames.xlsx', sheet_name= "Titles", names=['DC','Track','Super','DataBaseTitle','Group','Group Name','Vol 1 Month Start','Vol 1 Year Start','Vol 1 Issue Start','Vol 1 Month End','Vol 1 Year End','Vol 1 Issue End','Vol 2 Month Start','Vol 2 Year Start','Vol 2 Issue Start','Vol 2 Month End','Vol 2 Year End','Vol 2 Issue End','Vol 3 Month Start','Vol 3 Year Start','Vol 3 Issue Start','Vol 3 Month End','Vol 3 Year End','Vol 3 Issue End','Vol 4 Month Start','Vol 4 Year Start','Vol 4 Issue Start','Vol 4 Month End','Vol 4 Year End','Vol 4 Issue End','Vol 5 Month Start','Vol 5 Year Start','Vol 5 Issue Start','Vol 5 Month End','Vol 5 Year End','Vol 5 Issue End','Vol 6 Month Start','Vol 6 Year Start','Vol 6 Issue Start','Vol 6 Month End','Vol 6 Year End','Vol 6 Issue End','Vol 7 Month Start','Vol 7 Year Start','Vol 7 Issue Start','Vol 7 Month End','Vol 7 Year End','Vol 7 Issue End','Vol 8 Month Start','Vol 8 Year Start','Vol 8 Issue Start','Vol 8 Month End','Vol 8 Year End','Vol 8 Issue End','Vol 9 Month Start','Vol 9 Year Start','Vol 9 Issue Start','Vol 9 Month End','Vol 9 Year End','Vol 9 Issue End','Vol 10 Month Start','Vol 10 Year Start','Vol 10 Issue Start','Vol 10 Month End','Vol 10 Year End','Vol 10 Issue End','Vol 11 Month Start','Vol 11 Year Start','Vol 11 Issue Start','Vol 11 Month End','Vol 11 Year End','Vol 11 Issue End','Vol 12 Month Start','Vol 12 Year Start','Vol 12 Issue Start','Vol 12 Month End','Vol 12 Year End','Vol 12 Issue End'])
 
 
-while (year < 2020 or month!=4):
+while (month==1):#year < 2020 or month!=4):
     if (month == 1):
         monthC = "01"
     if (month == 2):
@@ -265,73 +266,94 @@ while (year < 2020 or month!=4):
                         dcTitleWikiURL = dcTitleWikiURL + str(extension)
                     break     
         if (tracked): 
-            if comicTitle not in dcTitleList:
+            if comicTitle not in dcCharacterString:
                 newTitle = Titles(comicTitle)
                 dcTitleList.append(newTitle)
                 dcCharacterString.append(comicTitle)
                 newTitle.addTitleSale(sales,monthCol)
                 newTitle.addTitleUnit(units,monthCol)
-            try:     
-                page = requests.get(dcTitleWikiURL) 
-                soup = BeautifulSoup(page.content, "html.parser")
-                characterLinks = []
-                for f in soup.find_all('b', string=["Featured Characters:"]):
-                    featured = f.find_next('ul').find_all('a')
-                    for link in featured:
-                        if (link.get('href') not in characterLinks):
-                            characterLinks.append(link.get('href'))
-                for character in characterLinks:
-                    #print('Searching Character')
-                    dcCharacterURL = 'https://dc.fandom.com' + character
-                    characterPage = requests.get(dcCharacterURL)
-                    characterSoup = BeautifulSoup(characterPage.content, "html.parser")
-                    characterName = characterSoup.find('h1').text.strip()
-                    if not dcCharacterList:
-                        newChar = CharacterComics(characterName)
-                        dcCharacterList.append(newChar)
-                        dcCharacterString.append(characterName)
-                        newChar.addUnit(units,monthCol)
-                        newChar.addSale(sales,monthCol)
-                        newChar.addComic(comicTitle)
-                        newChar.addComicIn(monthCol)
-                    elif characterName in dcCharacterString:
-                        for characters in dcCharacterList:
-                            if (characterName in [characters.name]):
-                                characters.addUnit(units,monthCol)
-                                characters.addSale(sales,monthCol)
-                                characters.addComic(comicTitle)
-                                characters.addComicIn(monthCol)
-                                break
-                    else:
-                        newChar = CharacterComics(characterName)
-                        dcCharacterList.append(newChar)
-                        dcCharacterString.append(characterName)
-                        newChar.addUnit(units,monthCol)
-                        newChar.addSale(sales,monthCol)
-                        newChar.addComic(comicTitle)
-                        newChar.addComicIn(monthCol)
-            except:
-                print(str(month) +" / " + str(year))
-                print(comicTitle)
-                print(issueString)    
+                newTitle.addUnits(units)
+                newTitle.addSales(sales)
+                newTitle.addIssueNumber(issueString)
+                newTitle.addVol(vol)
+                try:     
+                    page = requests.get(dcTitleWikiURL) 
+                    soup = BeautifulSoup(page.content, "html.parser")
+                    characterLinks = []
+                    characterString = ""
+                    for f in soup.find_all('b', string=["Featured Characters:"]):
+                        featured = f.find_next('ul').find_all('a')
+                        for link in featured:
+                            if (link.get('href') not in characterLinks):
+                                characterLinks.append(link.get('href'))
+                    for character in characterLinks:
+                        dcCharacterURL = 'https://dc.fandom.com' + character
+                        characterPage = requests.get(dcCharacterURL)
+                        characterSoup = BeautifulSoup(characterPage.content, "html.parser")
+                        characterName = characterSoup.find('h1').text.strip()
+                        characterString = characterString + "/" + characterName
+                    newTitle.addCharacter(characterString)
+                except:
+                    dcTitle.addCharacter("Character Not Found")
+                    print(str(month) +" / " + str(year))
+                    print(comicTitle)
+                    print(issueString) 
+            else:
+                for dcTitle in dcTitleList:
+                    if comicTitle in dcTitle.name:
+                        dcTitle.addTitleSale(sales,monthCol)
+                        dcTitle.addTitleUnit(units,monthCol)
+                        dcTitle.addUnits(units)
+                        dcTitle.addSales(sales)
+                        dcTitle.addIssueNumber(issueString)
+                        dcTitle.addVol(vol)
+                        try:     
+                            page = requests.get(dcTitleWikiURL) 
+                            soup = BeautifulSoup(page.content, "html.parser")
+                            characterLinks = []
+                            characterString = ""
+                            for f in soup.find_all('b', string=["Featured Characters:"]):
+                                featured = f.find_next('ul').find_all('a')
+                                for link in featured:
+                                    if (link.get('href') not in characterLinks):
+                                        characterLinks.append(link.get('href'))
+                            for character in characterLinks:
+                                dcCharacterURL = 'https://dc.fandom.com' + character
+                                characterPage = requests.get(dcCharacterURL)
+                                characterSoup = BeautifulSoup(characterPage.content, "html.parser")
+                                characterName = characterSoup.find('h1').text.strip()
+                                characterString = characterString + "/" + characterName
+                            dcTitle.addCharacter(characterString)
+                        except:
+                            dcTitle.addCharacter("Character Not Found")
+                            print(str(month) +" / " + str(year))
+                            print(comicTitle)
+                            print(issueString) 
+                            
     monthCol = monthCol + 1
     if (month == 12):
         year = year + 1
         month = 1
     else: 
         month = month + 1
-dcIssueSalesData = []
-dcIssueUnitsData = []
-dcIssueComicsInData = []
-dcCharacterNames = []
-# for dcCharacter in dcCharacterList:
-#     dcIssueSalesData.append(dcCharacter.characterSales)
-#     dcIssueUnitsData.append(dcCharacter.characterUnits)
-#     dcIssueComicsInData.append(dcCharacter.comicsIn)
-#     dcCharacterNames.append(str(dcCharacter.name))
-# dcDataFrame = pd.DataFrame(dcIssueSalesData,columns=monthList, index = dcCharacterNames)
-# dcDataFrame.to_excel("DcIssueCharacterSalesData.xlsx")
-# dcDataFrame = pd.DataFrame(dcIssueUnitsData,columns=monthList, index = dcCharacterNames)
-# dcDataFrame.to_excel("DcIssueCharacterUnitsData.xlsx")
-# dcDataFrame = pd.DataFrame(dcIssueComicsInData,columns=monthList, index = dcCharacterNames)
-# dcDataFrame.to_excel("DcIssueCharacterComicsInData.xlsx")
+
+countTotal = 0
+dataTrack = []
+for finalTitle in dcTitleList:
+    finalDisplay = []
+    finalDisplay.append(finalTitle.monthlyTitleUnits)
+    finalDisplay.append(finalTitle.monthlyTitleSales)
+    finalDisplay.append(finalTitle.issueUnits)
+    finalDisplay.append(finalTitle.issueSales)
+    finalDisplay.append(finalTitle.volNumber)
+    finalDisplay.append(finalTitle.issueNumber)
+    finalDisplay.append(finalTitle.mainCharacters)
+    dcDataFrame = pd.DataFrame(finalDisplay, index = ["Monthly Units","Monthly Sales","Issue Units","Issue Sales","Vol Number","Issue Number","Characters"])
+    dataTrack.append(dcDataFrame)
+
+
+countI = 1
+writer = pd.ExcelWriter('SpecificIssueTestData.xlsx')
+for df in dataTrack:
+    df.to_excel(writer,sheet_name = "Title "+str(countI))
+        
