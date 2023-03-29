@@ -321,7 +321,7 @@ while (year < 2020 or month!=4):
                                 print('c')  
                     if (nameRow['Track'] == 3):
                         extension = nameRow['Group Name']
-                        dcTitleWikiURL = dcTitleWikiURL + "_" + str(extension)
+                        dcTitleWikiURL = dcTitleWikiURL + str(extension)
                         print (dcTitleWikiURL)
                         print('d')  
                     break     
@@ -366,9 +366,8 @@ while (year < 2020 or month!=4):
                         newChar.addSale(sales,monthCol)
                         newChar.addComic(comicTitle)
                         newChar.addComicIn(monthCol)
-                    if (printCounter == 1):
-                        printCounter = 2
-                        print('Character Recorded ('+characterName+")")
+                    print('Character Recorded ('+characterName+")")
+                        
             except:
                 print(str(month) +" / " + str(year))
                 print(comicTitle)
@@ -383,17 +382,17 @@ dcIssueSalesData = []
 dcIssueUnitsData = []
 dcIssueComicsInData = []
 dcCharacterNames = []
-# for dcCharacter in dcCharacterList:
-#     dcIssueSalesData.append(dcCharacter.characterSales)
-#     dcIssueUnitsData.append(dcCharacter.characterUnits)
-#     dcIssueComicsInData.append(dcCharacter.comicsIn)
-#     dcCharacterNames.append(str(dcCharacter.name))
-# dcDataFrame = pd.DataFrame(dcIssueSalesData,columns=monthList, index = dcCharacterNames)
-# dcDataFrame.to_excel("DcIssueCharacterSalesData.xlsx")
-# dcDataFrame = pd.DataFrame(dcIssueUnitsData,columns=monthList, index = dcCharacterNames)
-# dcDataFrame.to_excel("DcIssueCharacterUnitsData.xlsx")
-# dcDataFrame = pd.DataFrame(dcIssueComicsInData,columns=monthList, index = dcCharacterNames)
-# dcDataFrame.to_excel("DcIssueCharacterComicsInData.xlsx")
+for dcCharacter in dcCharacterList:
+    dcIssueSalesData.append(dcCharacter.characterSales)
+    dcIssueUnitsData.append(dcCharacter.characterUnits)
+    dcIssueComicsInData.append(dcCharacter.comicsIn)
+    dcCharacterNames.append(str(dcCharacter.name))
+dcDataFrame = pd.DataFrame(dcIssueSalesData,columns=monthList, index = dcCharacterNames)
+dcDataFrame.to_excel("DcIssueCharacterSalesData.xlsx", sheet_name="Sales")
+dcDataFrame = pd.DataFrame(dcIssueUnitsData,columns=monthList, index = dcCharacterNames)
+dcDataFrame.to_excel("DcIssueCharacterUnitsData.xlsx", sheet_name="Units")
+dcDataFrame = pd.DataFrame(dcIssueComicsInData,columns=monthList, index = dcCharacterNames)
+dcDataFrame.to_excel("DcIssueCharacterComicsInData.xlsx", sheet_name="Comics In")
     
 
 

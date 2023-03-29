@@ -61,11 +61,11 @@ dcCharacterString = []
 dcURL = "https://dc.fandom.com/wiki/"
 marvelURL = "https://marvel.fandom.com/wiki/"
 
-marvelNames = pd.read_excel('MarvelNames.xlsx', sheet_name= "Titles", names=['DC','Track','Super','DataBaseTitle','Group','Group Name','Vol 1 Month Start','Vol 1 Year Start','Vol 1 Issue Start','Vol 1 Month End','Vol 1 Year End','Vol 1 Issue End','Vol 2 Month Start','Vol 2 Year Start','Vol 2 Issue Start','Vol 2 Month End','Vol 2 Year End','Vol 2 Issue End','Vol 3 Month Start','Vol 3 Year Start','Vol 3 Issue Start','Vol 3 Month End','Vol 3 Year End','Vol 3 Issue End','Vol 4 Month Start','Vol 4 Year Start','Vol 4 Issue Start','Vol 4 Month End','Vol 4 Year End','Vol 4 Issue End','Vol 5 Month Start','Vol 5 Year Start','Vol 5 Issue Start','Vol 5 Month End','Vol 5 Year End','Vol 5 Issue End','Vol 6 Month Start','Vol 6 Year Start','Vol 6 Issue Start','Vol 6 Month End','Vol 6 Year End','Vol 6 Issue End','Vol 7 Month Start','Vol 7 Year Start','Vol 7 Issue Start','Vol 7 Month End','Vol 7 Year End','Vol 7 Issue End','Vol 8 Month Start','Vol 8 Year Start','Vol 8 Issue Start','Vol 8 Month End','Vol 8 Year End','Vol 8 Issue End','Vol 9 Month Start','Vol 9 Year Start','Vol 9 Issue Start','Vol 9 Month End','Vol 9 Year End','Vol 9 Issue End','Vol 10 Month Start','Vol 10 Year Start','Vol 10 Issue Start','Vol 10 Month End','Vol 10 Year End','Vol 10 Issue End','Vol 11 Month Start','Vol 11 Year Start','Vol 11 Issue Start','Vol 11 Month End','Vol 11 Year End','Vol 11 Issue End','Vol 12 Month Start','Vol 12 Year Start','Vol 12 Issue Start','Vol 12 Month End','Vol 12 Year End','Vol 12 Issue End'])
+#marvelNames = pd.read_excel('MarvelNames.xlsx', sheet_name= "Titles", names=['DC','Track','Super','DataBaseTitle','Group','Group Name','Vol 1 Month Start','Vol 1 Year Start','Vol 1 Issue Start','Vol 1 Month End','Vol 1 Year End','Vol 1 Issue End','Vol 2 Month Start','Vol 2 Year Start','Vol 2 Issue Start','Vol 2 Month End','Vol 2 Year End','Vol 2 Issue End','Vol 3 Month Start','Vol 3 Year Start','Vol 3 Issue Start','Vol 3 Month End','Vol 3 Year End','Vol 3 Issue End','Vol 4 Month Start','Vol 4 Year Start','Vol 4 Issue Start','Vol 4 Month End','Vol 4 Year End','Vol 4 Issue End','Vol 5 Month Start','Vol 5 Year Start','Vol 5 Issue Start','Vol 5 Month End','Vol 5 Year End','Vol 5 Issue End','Vol 6 Month Start','Vol 6 Year Start','Vol 6 Issue Start','Vol 6 Month End','Vol 6 Year End','Vol 6 Issue End','Vol 7 Month Start','Vol 7 Year Start','Vol 7 Issue Start','Vol 7 Month End','Vol 7 Year End','Vol 7 Issue End','Vol 8 Month Start','Vol 8 Year Start','Vol 8 Issue Start','Vol 8 Month End','Vol 8 Year End','Vol 8 Issue End','Vol 9 Month Start','Vol 9 Year Start','Vol 9 Issue Start','Vol 9 Month End','Vol 9 Year End','Vol 9 Issue End','Vol 10 Month Start','Vol 10 Year Start','Vol 10 Issue Start','Vol 10 Month End','Vol 10 Year End','Vol 10 Issue End','Vol 11 Month Start','Vol 11 Year Start','Vol 11 Issue Start','Vol 11 Month End','Vol 11 Year End','Vol 11 Issue End','Vol 12 Month Start','Vol 12 Year Start','Vol 12 Issue Start','Vol 12 Month End','Vol 12 Year End','Vol 12 Issue End'])
 dcNames = pd.read_excel('DCNames.xlsx', sheet_name= "Titles", names=['DC','Track','Super','DataBaseTitle','Group','Group Name','Vol 1 Month Start','Vol 1 Year Start','Vol 1 Issue Start','Vol 1 Month End','Vol 1 Year End','Vol 1 Issue End','Vol 2 Month Start','Vol 2 Year Start','Vol 2 Issue Start','Vol 2 Month End','Vol 2 Year End','Vol 2 Issue End','Vol 3 Month Start','Vol 3 Year Start','Vol 3 Issue Start','Vol 3 Month End','Vol 3 Year End','Vol 3 Issue End','Vol 4 Month Start','Vol 4 Year Start','Vol 4 Issue Start','Vol 4 Month End','Vol 4 Year End','Vol 4 Issue End','Vol 5 Month Start','Vol 5 Year Start','Vol 5 Issue Start','Vol 5 Month End','Vol 5 Year End','Vol 5 Issue End','Vol 6 Month Start','Vol 6 Year Start','Vol 6 Issue Start','Vol 6 Month End','Vol 6 Year End','Vol 6 Issue End','Vol 7 Month Start','Vol 7 Year Start','Vol 7 Issue Start','Vol 7 Month End','Vol 7 Year End','Vol 7 Issue End','Vol 8 Month Start','Vol 8 Year Start','Vol 8 Issue Start','Vol 8 Month End','Vol 8 Year End','Vol 8 Issue End','Vol 9 Month Start','Vol 9 Year Start','Vol 9 Issue Start','Vol 9 Month End','Vol 9 Year End','Vol 9 Issue End','Vol 10 Month Start','Vol 10 Year Start','Vol 10 Issue Start','Vol 10 Month End','Vol 10 Year End','Vol 10 Issue End','Vol 11 Month Start','Vol 11 Year Start','Vol 11 Issue Start','Vol 11 Month End','Vol 11 Year End','Vol 11 Issue End','Vol 12 Month Start','Vol 12 Year Start','Vol 12 Issue Start','Vol 12 Month End','Vol 12 Year End','Vol 12 Issue End'])
 
 
-while (month==1):#year < 2020 or month!=4):
+while (year < 2020 or month!=4):
     if (month == 1):
         monthC = "01"
     if (month == 2):
@@ -349,11 +349,12 @@ for finalTitle in dcTitleList:
     finalDisplay.append(finalTitle.issueNumber)
     finalDisplay.append(finalTitle.mainCharacters)
     dcDataFrame = pd.DataFrame(finalDisplay, index = ["Monthly Units","Monthly Sales","Issue Units","Issue Sales","Vol Number","Issue Number","Characters"])
-    dataTrack.append(dcDataFrame)
+    try:
+        dcDataFrame.to_excel(str(finalTitle.name)+"Info.xlsx")
+    except:
+        print(finalTitle.name+" Failed")
+        newName= input('New Name >>>')
+        dcDataFrame.to_excel(str(newName)+"Info.xlsx")
 
 
-countI = 1
-writer = pd.ExcelWriter('SpecificIssueTestData.xlsx')
-for df in dataTrack:
-    df.to_excel(writer,sheet_name = "Title "+str(countI))
-        
+
