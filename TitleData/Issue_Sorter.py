@@ -90,7 +90,9 @@ while (year < 2020 or month!=4):
         monthC = "11"
     if (month == 12):
         monthC = "12"
+    print("-------------------------------------------------------------------------------------------------------------------------------\n\n")
     print( str(year)+"_"+monthC)
+    print("\n\n-------------------------------------------------------------------------------------------------------------------------------")
     monthList.append(str(year)+"_"+monthC)
     issueData = pd.read_excel('Issues.xlsx',sheet_name = str(year)+"_"+monthC, names = ['Amt','Dollars','Comic-Title','Issue','Price','Publisher','Units','Sales'])
     issueData.reset_index(inplace = True, drop = True)
@@ -276,7 +278,9 @@ while (year < 2020 or month!=4):
                 newTitle.addSales(sales)
                 newTitle.addIssueNumber(issueString)
                 newTitle.addVol(vol)
+                print(comicTitle+" Added")
                 try:     
+                    print("Begin Search:"+dcTitleWikiURL)
                     page = requests.get(dcTitleWikiURL) 
                     soup = BeautifulSoup(page.content, "html.parser")
                     characterLinks = []
@@ -286,6 +290,7 @@ while (year < 2020 or month!=4):
                         for link in featured:
                             if (link.get('href') not in characterLinks):
                                 characterLinks.append(link.get('href'))
+                    print("Charater Search:"+dcTitleWikiURL) 
                     for character in characterLinks:
                         dcCharacterURL = 'https://dc.fandom.com' + character
                         characterPage = requests.get(dcCharacterURL)
@@ -307,7 +312,8 @@ while (year < 2020 or month!=4):
                         dcTitle.addSales(sales)
                         dcTitle.addIssueNumber(issueString)
                         dcTitle.addVol(vol)
-                        try:     
+                        try:
+                            print("Begin Search:"+dcTitleWikiURL)     
                             page = requests.get(dcTitleWikiURL) 
                             soup = BeautifulSoup(page.content, "html.parser")
                             characterLinks = []
@@ -317,6 +323,7 @@ while (year < 2020 or month!=4):
                                 for link in featured:
                                     if (link.get('href') not in characterLinks):
                                         characterLinks.append(link.get('href'))
+                            print("Charater Search:"+dcTitleWikiURL) 
                             for character in characterLinks:
                                 dcCharacterURL = 'https://dc.fandom.com' + character
                                 characterPage = requests.get(dcCharacterURL)
@@ -324,11 +331,14 @@ while (year < 2020 or month!=4):
                                 characterName = characterSoup.find('h1').text.strip()
                                 characterString = characterString + "/" + characterName
                             dcTitle.addCharacter(characterString)
+                            
                         except:
                             dcTitle.addCharacter("Character Not Found")
                             print(str(month) +" / " + str(year))
                             print(comicTitle)
                             print(issueString) 
+                        print(comicTitle+" Updated")
+            
                             
     monthCol = monthCol + 1
     if (month == 12):
@@ -348,13 +358,11 @@ for finalTitle in dcTitleList:
     finalDisplay.append(finalTitle.volNumber)
     finalDisplay.append(finalTitle.issueNumber)
     finalDisplay.append(finalTitle.mainCharacters)
-    dcDataFrame = pd.DataFrame(finalDisplay, index = ["Monthly Units","Monthly Sales","Issue Units","Issue Sales","Vol Number","Issue Number","Characters"])
+    dcDataFrame = pd.DataFrame(finalDisplay, index = ["Monthly Units","Monthly Sales","Issue Units","Issue Sales","Vol Number","Issue Number","Characters"])#
     try:
         dcDataFrame.to_excel(str(finalTitle.name)+"Info.xlsx")
     except:
         print(finalTitle.name+" Failed")
-        newName= input('New Name >>>')
-        dcDataFrame.to_excel(str(newName)+"Info.xlsx")
 
 
 
