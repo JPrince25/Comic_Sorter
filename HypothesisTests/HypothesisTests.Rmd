@@ -1,0 +1,74 @@
+---
+title: "DC Hypothesis Tests"
+author: "Jacob Prince"
+date: "2023-03-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Total Era Tests
+```{r}
+library(readxl)
+eraTotals <- read_excel("EraCompare.xlsx")
+#View(eraTotals)
+AoCUnits <- eraTotals$`Age of Crisis Units`
+New52Units <- eraTotals$`DC New 52 Units`
+RebirthUnits <- eraTotals$`DC Rebirth Units`
+```
+Test Between AoC Total Units vs New 52 Total Units
+```{r}
+t.test(AoCUnits,New52Units, alternative="two.sided", conf.level=0.95,paired = FALSE)
+```
+Test Between New 52 Total Units vs Rebirth Total Units
+```{r}
+t.test(New52Units,RebirthUnits, alternative="two.sided", conf.level=0.95,paired = FALSE)
+```
+
+## Change of Era Tests
+```{r}
+library(readxl)
+new52Changes <- read_excel("New52Switch.xlsx")
+rebirthChanges <- read_excel("RebirthSwitch.xlsx")
+#View(new52Changes)
+#View(rebirthChanges)
+a_n1a <- new52Changes$AoC1
+a_n1n <- new52Changes$New1
+a_n2a <- new52Changes$AoC2
+a_n2n <- new52Changes$New2
+n_r1n <- rebirthChanges$New1
+n_r1r <- rebirthChanges$Rebirth1
+n_r2n <- rebirthChanges$New2
+n_r2r <- rebirthChanges$Rebirth2
+```
+
+One Year Test (Age of Crisis to New 52)
+```{r}
+t.test(a_n1a,a_n1n, alternative="two.sided", conf.level=0.95,paired = FALSE)
+```
+Two Year Test (Age of Crisis to New 52)
+```{r}
+t.test(a_n2a,a_n2n, alternative="two.sided", conf.level=0.95,paired = FALSE)
+```
+One Year Test (New 52 to Rebirth)
+```{r}
+t.test(n_r1n,n_r1r, alternative="two.sided", conf.level=0.95,paired = FALSE)
+```
+
+Two Year Test (New 52 to Rebirth)
+```{r}
+t.test(n_r2n,n_r2r, alternative="two.sided", conf.level=0.95,paired = FALSE)
+```
+
+```{r}
+
+```
+```{r}
+```
+```{r}
+```
+```{r}
+```
+
