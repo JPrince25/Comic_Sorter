@@ -61,14 +61,55 @@ Two Year Test (New 52 to Rebirth)
 ```{r}
 t.test(n_r2n,n_r2r, alternative="two.sided", conf.level=0.95,paired = FALSE)
 ```
+## Comic Appearances (2008-2020)
+Whole Time Period
+```{r}
+library(readxl)
+comicsIn <- read_excel("CharacterComicsIn.xlsx")
+#View(comicsIn)
+BatmanIn <- comicsIn$Batman
+SupermanIn <- comicsIn$Superman
+Top5 <- c(comicsIn$Superman,comicsIn$`Wonder Woman`,comicsIn$`Flash (Barry)`,comicsIn$Nightwing)
+allChar <- c(comicsIn$Superman,comicsIn$`Wonder Woman`,comicsIn$`Flash (Barry)`,comicsIn$Nightwing,comicsIn$Aquaman,comicsIn$`Flash (Wally)`,comicsIn$`Green Lantern (Hal)`,comicsIn$`Martian Manhunter`,comicsIn$Shazam,comicsIn$`Green Arrow`,comicsIn$Cyborg,comicsIn$Supergirl,comicsIn$Hawkman,comicsIn$`Green Lantern (John)`,comicsIn$`Green Lantern (Kyle)`,comicsIn$`Black Canary`,comicsIn$Batgirl,comicsIn$Zatanna,comicsIn$`John Constantine`,comicsIn$Starfire,comicsIn$`Dr Fate`,comicsIn$`Blue Beetle (Jaime)`,comicsIn$`Booster Gold`,comicsIn$`Swamp Thing`,comicsIn$Joker,comicsIn$`Lex Luthor`,comicsIn$`Harley Quinn`,comicsIn$Deathstroke,comicsIn$Catwoman)
+t.test(BatmanIn, SupermanIn, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(BatmanIn, Top5, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(BatmanIn, allChar, alternative="two.sided", conf.level=0.95,paired = FALSE)
+```
 
-```{r}
 
-```
+## Comic Appearances (Age of Crisis End)
 ```{r}
+comicsIn <- read_excel("AoCComicsIn.xlsx")
+#View(comicsIn)
+BatmanIn <- comicsIn$Batman
+SupermanIn <- comicsIn$Superman
+Top5 <- c(comicsIn$Superman,comicsIn$`Wonder Woman`,comicsIn$`Flash (Barry)`,comicsIn$Nightwing)
+allChar <- c(comicsIn$Superman,comicsIn$`Wonder Woman`,comicsIn$`Flash (Barry)`,comicsIn$Nightwing,comicsIn$Aquaman,comicsIn$`Flash (Wally)`,comicsIn$`Green Lantern (Hal)`,comicsIn$`Martian Manhunter`,comicsIn$Shazam,comicsIn$`Green Arrow`,comicsIn$Cyborg,comicsIn$Supergirl,comicsIn$Hawkman,comicsIn$`Green Lantern (John)`,comicsIn$`Green Lantern (Kyle)`,comicsIn$`Black Canary`,comicsIn$Batgirl,comicsIn$Zatanna,comicsIn$`John Constantine`,comicsIn$Starfire,comicsIn$`Dr Fate`,comicsIn$`Blue Beetle (Jaime)`,comicsIn$`Booster Gold`,comicsIn$`Swamp Thing`,comicsIn$Joker,comicsIn$`Lex Luthor`,comicsIn$`Harley Quinn`,comicsIn$Deathstroke,comicsIn$Catwoman)
+t.test(BatmanIn, SupermanIn, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(BatmanIn, Top5, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(BatmanIn, allChar, alternative="two.sided", conf.level=0.95,paired = FALSE)
 ```
+## Comic Appearances (New 52)
 ```{r}
+comicsIn <- read_excel("New52ComicsIn.xlsx")
+#View(comicsIn)
+BatmanIn <- comicsIn$Batman
+SupermanIn <- comicsIn$Superman
+Top5 <- c(comicsIn$Superman,comicsIn$`Wonder Woman`,comicsIn$`Flash (Barry)`,comicsIn$Nightwing)
+allChar <- c(comicsIn$Superman,comicsIn$`Wonder Woman`,comicsIn$`Flash (Barry)`,comicsIn$Nightwing,comicsIn$Aquaman,comicsIn$`Flash (Wally)`,comicsIn$`Green Lantern (Hal)`,comicsIn$`Martian Manhunter`,comicsIn$Shazam,comicsIn$`Green Arrow`,comicsIn$Cyborg,comicsIn$Supergirl,comicsIn$Hawkman,comicsIn$`Green Lantern (John)`,comicsIn$`Green Lantern (Kyle)`,comicsIn$`Black Canary`,comicsIn$Batgirl,comicsIn$Zatanna,comicsIn$`John Constantine`,comicsIn$Starfire,comicsIn$`Dr Fate`,comicsIn$`Blue Beetle (Jaime)`,comicsIn$`Booster Gold`,comicsIn$`Swamp Thing`,comicsIn$Joker,comicsIn$`Lex Luthor`,comicsIn$`Harley Quinn`,comicsIn$Deathstroke,comicsIn$Catwoman)
+t.test(BatmanIn, SupermanIn, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(BatmanIn, Top5, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(BatmanIn, allChar, alternative="two.sided", conf.level=0.95,paired = FALSE)
 ```
+## Comic Appearances (Rebirth)
 ```{r}
+comicsIn <- read_excel("RebirthComicsIn.xlsx")
+#View(comicsIn)
+BatmanIn <- comicsIn$Batman
+SupermanIn <- comicsIn$Superman
+Top5 <- c(comicsIn$Superman,comicsIn$`Wonder Woman`,comicsIn$`Flash (Barry)`,comicsIn$Nightwing)
+allChar <- c(comicsIn$Superman,comicsIn$`Wonder Woman`,comicsIn$`Flash (Barry)`,comicsIn$Nightwing,comicsIn$Aquaman,comicsIn$`Flash (Wally)`,comicsIn$`Green Lantern (Hal)`,comicsIn$`Martian Manhunter`,comicsIn$Shazam,comicsIn$`Green Arrow`,comicsIn$Cyborg,comicsIn$Supergirl,comicsIn$Hawkman,comicsIn$`Green Lantern (John)`,comicsIn$`Green Lantern (Kyle)`,comicsIn$`Black Canary`,comicsIn$Batgirl,comicsIn$Zatanna,comicsIn$`John Constantine`,comicsIn$Starfire,comicsIn$`Dr Fate`,comicsIn$`Blue Beetle (Jaime)`,comicsIn$`Booster Gold`,comicsIn$`Swamp Thing`,comicsIn$Joker,comicsIn$`Lex Luthor`,comicsIn$`Harley Quinn`,comicsIn$Deathstroke,comicsIn$Catwoman)
+t.test(BatmanIn, SupermanIn, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(BatmanIn, Top5, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(BatmanIn, allChar, alternative="two.sided", conf.level=0.95,paired = FALSE)
 ```
-
