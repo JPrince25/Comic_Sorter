@@ -113,3 +113,103 @@ t.test(BatmanIn, SupermanIn, alternative="two.sided", conf.level=0.95,paired = F
 t.test(BatmanIn, Top5, alternative="two.sided", conf.level=0.95,paired = FALSE)
 t.test(BatmanIn, allChar, alternative="two.sided", conf.level=0.95,paired = FALSE)
 ```
+
+## Comic Sales 
+```{r}
+library(readxl)
+charSales <- read_excel("CharacterSales.xlsx")
+AoCSales <- read_excel("AoCCharacterSales.xlsx")
+new52Sales <- read_excel("New52CharacterSales.xlsx")
+new52SalesSwitch <- read_excel("New52SwitchSales.xlsx")
+RebirthSales <- read_excel("RebirthCharacterSales.xlsx")
+RebirthSalesSwitch <- read_excel("RebirthSwitchSales.xlsx")
+#View(new52SalesSwitch)
+```
+
+```{r}
+BatmanSales <- charSales$Batman
+SupermanSales <- charSales$Superman
+WonderWomanSales <- charSales$`Wonder Woman`
+FlashSales <- charSales$`Flash (Barry)`
+NightwingSales <- charSales$Nightwing
+Top5Sales <- c(WonderWomanSales,SupermanSales,FlashSales,NightwingSales)
+t.test(BatmanSales, SupermanSales, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(BatmanSales, WonderWomanSales, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(BatmanSales, FlashSales, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(BatmanSales, NightwingSales, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(BatmanSales, Top5Sales, alternative="two.sided", conf.level=0.95,paired = FALSE)
+```
+
+```{r}
+BatmanAoCSales <- AoCSales$Batman
+SupermanAoCSales <- AoCSales$Superman
+WonderWomanAoCSales <- AoCSales$`Wonder Woman`
+FlashAoCSales <- AoCSales$`Flash (Barry)`
+NightwingAoCSales <- AoCSales$Nightwing
+BatmanNew52Sales <- new52Sales$Batman
+SupermanNew52Sales <- new52Sales$Superman
+WonderWomanNew52Sales <- new52Sales$`Wonder Woman`
+FlashNew52Sales <- new52Sales$`Flash (Barry)`
+NightwingNew52Sales <- new52Sales$Nightwing
+BatmanRebirthSales <- RebirthSales$Batman
+SupermanRebirthSales <- RebirthSales$Superman
+WonderWomanRebirthSales <- RebirthSales$`Wonder Woman`
+FlashRebirthSales <- RebirthSales$`Flash (Barry)`
+NightwingRebirthSales <- RebirthSales$Nightwing
+BatmanNew52Switch <- new52SalesSwitch$Batman
+BatmanNew52Switch2 <- new52SalesSwitch$`Batman 2`
+SupermanNew52Switch <- new52SalesSwitch$Superman
+SupermanNew52Switch2 <- new52SalesSwitch$`Superman 2`
+WonderWomanNew52Switch <- new52SalesSwitch$`Wonder Woman`
+WonderWomanNew52Switch2 <- new52SalesSwitch$`Wonder Woman 2`
+FlashNew52Switch <- new52SalesSwitch$`Flash (Barry)`
+FlashNew52Switch2 <- new52SalesSwitch$`Flash (Barry) 2`
+NightwingNew52Switch <- new52SalesSwitch$Nightwing
+NightwingNew52Switch2 <- new52SalesSwitch$`Nightwing 2`
+BatmanRebirthSwitch <- RebirthSalesSwitch$Batman
+BatmanRebirthSwitch2 <- RebirthSalesSwitch$`Batman 2`
+SupermanRebirthSwitch <- RebirthSalesSwitch$Superman
+SupermanRebirthSwitch2 <- RebirthSalesSwitch$`Superman 2`
+WonderWomanRebirthSwitch <- RebirthSalesSwitch$`Wonder Woman`
+WonderWomanRebirthSwitch2 <- RebirthSalesSwitch$`Wonder Woman 2`
+FlashRebirthSwitch <- RebirthSalesSwitch$`Flash (Barry)`
+FlashRebirthSwitch2 <- RebirthSalesSwitch$`Flash (Barry) 2`
+NightwingRebirthSwitch <- RebirthSalesSwitch$Nightwing
+NightwingRebirthSwitch2 <- RebirthSalesSwitch$`Nightwing 2`
+```
+
+```{r}
+t.test(BatmanAoCSales, BatmanNew52Sales, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(BatmanNew52Sales, BatmanRebirthSales, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(BatmanNew52Switch,BatmanNew52Switch2, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(BatmanRebirthSwitch,BatmanRebirthSwitch2, alternative="two.sided", conf.level=0.95,paired = FALSE)
+```
+
+```{r}
+t.test(SupermanAoCSales, SupermanNew52Sales, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(SupermanNew52Sales, SupermanRebirthSales, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(SupermanNew52Switch,SupermanNew52Switch2, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(SupermanRebirthSwitch,SupermanRebirthSwitch2, alternative="two.sided", conf.level=0.95,paired = FALSE)
+```
+
+```{r}
+t.test(WonderWomanAoCSales, WonderWomanNew52Sales, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(WonderWomanNew52Sales, WonderWomanRebirthSales, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(WonderWomanNew52Switch,WonderWomanNew52Switch2, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(WonderWomanRebirthSwitch,WonderWomanRebirthSwitch2, alternative="two.sided", conf.level=0.95,paired = FALSE)
+```
+
+```{r}
+t.test(FlashAoCSales, FlashNew52Sales, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(FlashNew52Sales, FlashRebirthSales, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(FlashNew52Switch,FlashNew52Switch2, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(FlashRebirthSwitch,FlashRebirthSwitch2, alternative="two.sided", conf.level=0.95,paired = FALSE)
+```
+
+```{r}
+t.test(NightwingAoCSales, NightwingNew52Sales, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(NightwingNew52Sales, NightwingRebirthSales, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(NightwingNew52Switch,NightwingNew52Switch2, alternative="two.sided", conf.level=0.95,paired = FALSE)
+t.test(NightwingRebirthSwitch,NightwingRebirthSwitch2, alternative="two.sided", conf.level=0.95,paired = FALSE)
+```
+
