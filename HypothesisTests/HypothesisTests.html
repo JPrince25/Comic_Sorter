@@ -470,39 +470,39 @@ BatmanIn &lt;- comicsIn$Batman
 SupermanIn &lt;- comicsIn$Superman
 Top5 &lt;- c(comicsIn$Superman,comicsIn$`Wonder Woman`,comicsIn$`Flash (Barry)`,comicsIn$Nightwing)
 allChar &lt;- c(comicsIn$Superman,comicsIn$`Wonder Woman`,comicsIn$`Flash (Barry)`,comicsIn$Nightwing,comicsIn$Aquaman,comicsIn$`Flash (Wally)`,comicsIn$`Green Lantern (Hal)`,comicsIn$`Martian Manhunter`,comicsIn$Shazam,comicsIn$`Green Arrow`,comicsIn$Cyborg,comicsIn$Supergirl,comicsIn$Hawkman,comicsIn$`Green Lantern (John)`,comicsIn$`Green Lantern (Kyle)`,comicsIn$`Black Canary`,comicsIn$Batgirl,comicsIn$Zatanna,comicsIn$`John Constantine`,comicsIn$Starfire,comicsIn$`Dr Fate`,comicsIn$`Blue Beetle (Jaime)`,comicsIn$`Booster Gold`,comicsIn$`Swamp Thing`,comicsIn$Joker,comicsIn$`Lex Luthor`,comicsIn$`Harley Quinn`,comicsIn$Deathstroke,comicsIn$Catwoman)
-t.test(BatmanIn, SupermanIn, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+t.test(BatmanIn, SupermanIn, alternative=&quot;greater&quot;, conf.level=0.95,paired = FALSE)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  BatmanIn and SupermanIn
 ## t = 10.442, df = 273.44, p-value &lt; 2.2e-16
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means is greater than 0
 ## 95 percent confidence interval:
-##  3.356298 4.915811
+##  3.482344      Inf
 ## sample estimates:
 ## mean of x mean of y 
 ##  9.435374  5.299320</code></pre>
-<pre class="r"><code>t.test(BatmanIn, Top5, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre class="r"><code>t.test(BatmanIn, Top5, alternative=&quot;greater&quot;, conf.level=0.95,paired = FALSE)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  BatmanIn and Top5
 ## t = 16.142, df = 182.81, p-value &lt; 2.2e-16
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means is greater than 0
 ## 95 percent confidence interval:
-##  4.717266 6.031033
+##  4.823736      Inf
 ## sample estimates:
 ## mean of x mean of y 
 ##  9.435374  4.061224</code></pre>
-<pre class="r"><code>t.test(BatmanIn, allChar, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre class="r"><code>t.test(BatmanIn, allChar, alternative=&quot;greater&quot;, conf.level=0.95,paired = FALSE)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  BatmanIn and allChar
 ## t = 24.378, df = 148.6, p-value &lt; 2.2e-16
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means is greater than 0
 ## 95 percent confidence interval:
-##  7.075383 8.323632
+##  7.176732      Inf
 ## sample estimates:
 ## mean of x mean of y 
 ##  9.435374  1.735867</code></pre>
@@ -515,39 +515,39 @@ BatmanIn &lt;- comicsIn$Batman
 SupermanIn &lt;- comicsIn$Superman
 Top5 &lt;- c(comicsIn$Superman,comicsIn$`Wonder Woman`,comicsIn$`Flash (Barry)`,comicsIn$Nightwing)
 allChar &lt;- c(comicsIn$Superman,comicsIn$`Wonder Woman`,comicsIn$`Flash (Barry)`,comicsIn$Nightwing,comicsIn$Aquaman,comicsIn$`Flash (Wally)`,comicsIn$`Green Lantern (Hal)`,comicsIn$`Martian Manhunter`,comicsIn$Shazam,comicsIn$`Green Arrow`,comicsIn$Cyborg,comicsIn$Supergirl,comicsIn$Hawkman,comicsIn$`Green Lantern (John)`,comicsIn$`Green Lantern (Kyle)`,comicsIn$`Black Canary`,comicsIn$Batgirl,comicsIn$Zatanna,comicsIn$`John Constantine`,comicsIn$Starfire,comicsIn$`Dr Fate`,comicsIn$`Blue Beetle (Jaime)`,comicsIn$`Booster Gold`,comicsIn$`Swamp Thing`,comicsIn$Joker,comicsIn$`Lex Luthor`,comicsIn$`Harley Quinn`,comicsIn$Deathstroke,comicsIn$Catwoman)
-t.test(BatmanIn, SupermanIn, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+t.test(BatmanIn, SupermanIn, alternative=&quot;greater&quot;, conf.level=0.95,paired = FALSE)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  BatmanIn and SupermanIn
-## t = 2.186, df = 73.812, p-value = 0.03199
-## alternative hypothesis: true difference in means is not equal to 0
+## t = 2.186, df = 73.812, p-value = 0.016
+## alternative hypothesis: true difference in means is greater than 0
 ## 95 percent confidence interval:
-##  0.1871688 4.0453894
+##  0.5036167       Inf
 ## sample estimates:
 ## mean of x mean of y 
 ##  9.069767  6.953488</code></pre>
-<pre class="r"><code>t.test(BatmanIn, Top5, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre class="r"><code>t.test(BatmanIn, Top5, alternative=&quot;greater&quot;, conf.level=0.95,paired = FALSE)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  BatmanIn and Top5
-## t = 4.8617, df = 50.101, p-value = 1.192e-05
-## alternative hypothesis: true difference in means is not equal to 0
+## t = 4.8617, df = 50.101, p-value = 5.959e-06
+## alternative hypothesis: true difference in means is greater than 0
 ## 95 percent confidence interval:
-##  2.391886 5.759276
+##  2.67072     Inf
 ## sample estimates:
 ## mean of x mean of y 
 ##  9.069767  4.994186</code></pre>
-<pre class="r"><code>t.test(BatmanIn, allChar, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre class="r"><code>t.test(BatmanIn, allChar, alternative=&quot;greater&quot;, conf.level=0.95,paired = FALSE)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  BatmanIn and allChar
-## t = 8.3004, df = 42.545, p-value = 1.938e-10
-## alternative hypothesis: true difference in means is not equal to 0
+## t = 8.3004, df = 42.545, p-value = 9.691e-11
+## alternative hypothesis: true difference in means is greater than 0
 ## 95 percent confidence interval:
-##  5.053499 8.298546
+##  5.323622      Inf
 ## sample estimates:
 ## mean of x mean of y 
 ##  9.069767  2.393745</code></pre>
@@ -560,39 +560,39 @@ BatmanIn &lt;- comicsIn$Batman
 SupermanIn &lt;- comicsIn$Superman
 Top5 &lt;- c(comicsIn$Superman,comicsIn$`Wonder Woman`,comicsIn$`Flash (Barry)`,comicsIn$Nightwing)
 allChar &lt;- c(comicsIn$Superman,comicsIn$`Wonder Woman`,comicsIn$`Flash (Barry)`,comicsIn$Nightwing,comicsIn$Aquaman,comicsIn$`Flash (Wally)`,comicsIn$`Green Lantern (Hal)`,comicsIn$`Martian Manhunter`,comicsIn$Shazam,comicsIn$`Green Arrow`,comicsIn$Cyborg,comicsIn$Supergirl,comicsIn$Hawkman,comicsIn$`Green Lantern (John)`,comicsIn$`Green Lantern (Kyle)`,comicsIn$`Black Canary`,comicsIn$Batgirl,comicsIn$Zatanna,comicsIn$`John Constantine`,comicsIn$Starfire,comicsIn$`Dr Fate`,comicsIn$`Blue Beetle (Jaime)`,comicsIn$`Booster Gold`,comicsIn$`Swamp Thing`,comicsIn$Joker,comicsIn$`Lex Luthor`,comicsIn$`Harley Quinn`,comicsIn$Deathstroke,comicsIn$Catwoman)
-t.test(BatmanIn, SupermanIn, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+t.test(BatmanIn, SupermanIn, alternative=&quot;greater&quot;, conf.level=0.95,paired = FALSE)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  BatmanIn and SupermanIn
 ## t = 11.234, df = 95.888, p-value &lt; 2.2e-16
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means is greater than 0
 ## 95 percent confidence interval:
-##  4.557535 6.513893
+##  4.717253      Inf
 ## sample estimates:
 ## mean of x mean of y 
 ##  9.285714  3.750000</code></pre>
-<pre class="r"><code>t.test(BatmanIn, Top5, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre class="r"><code>t.test(BatmanIn, Top5, alternative=&quot;greater&quot;, conf.level=0.95,paired = FALSE)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  BatmanIn and Top5
 ## t = 14.767, df = 67.495, p-value &lt; 2.2e-16
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means is greater than 0
 ## 95 percent confidence interval:
-##  5.513409 7.236591
+##  5.655009      Inf
 ## sample estimates:
 ## mean of x mean of y 
 ##  9.285714  2.910714</code></pre>
-<pre class="r"><code>t.test(BatmanIn, allChar, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre class="r"><code>t.test(BatmanIn, allChar, alternative=&quot;greater&quot;, conf.level=0.95,paired = FALSE)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  BatmanIn and allChar
 ## t = 19.329, df = 55.898, p-value &lt; 2.2e-16
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means is greater than 0
 ## 95 percent confidence interval:
-##  7.129992 8.778875
+##  7.266107      Inf
 ## sample estimates:
 ## mean of x mean of y 
 ##  9.285714  1.331281</code></pre>
@@ -605,39 +605,39 @@ BatmanIn &lt;- comicsIn$Batman
 SupermanIn &lt;- comicsIn$Superman
 Top5 &lt;- c(comicsIn$Superman,comicsIn$`Wonder Woman`,comicsIn$`Flash (Barry)`,comicsIn$Nightwing)
 allChar &lt;- c(comicsIn$Superman,comicsIn$`Wonder Woman`,comicsIn$`Flash (Barry)`,comicsIn$Nightwing,comicsIn$Aquaman,comicsIn$`Flash (Wally)`,comicsIn$`Green Lantern (Hal)`,comicsIn$`Martian Manhunter`,comicsIn$Shazam,comicsIn$`Green Arrow`,comicsIn$Cyborg,comicsIn$Supergirl,comicsIn$Hawkman,comicsIn$`Green Lantern (John)`,comicsIn$`Green Lantern (Kyle)`,comicsIn$`Black Canary`,comicsIn$Batgirl,comicsIn$Zatanna,comicsIn$`John Constantine`,comicsIn$Starfire,comicsIn$`Dr Fate`,comicsIn$`Blue Beetle (Jaime)`,comicsIn$`Booster Gold`,comicsIn$`Swamp Thing`,comicsIn$Joker,comicsIn$`Lex Luthor`,comicsIn$`Harley Quinn`,comicsIn$Deathstroke,comicsIn$Catwoman)
-t.test(BatmanIn, SupermanIn, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+t.test(BatmanIn, SupermanIn, alternative=&quot;greater&quot;, conf.level=0.95,paired = FALSE)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  BatmanIn and SupermanIn
-## t = 8.0338, df = 85.904, p-value = 4.55e-12
-## alternative hypothesis: true difference in means is not equal to 0
+## t = 8.0338, df = 85.904, p-value = 2.275e-12
+## alternative hypothesis: true difference in means is greater than 0
 ## 95 percent confidence interval:
-##  3.245371 5.379629
+##  3.419926      Inf
 ## sample estimates:
 ## mean of x mean of y 
 ##    9.9375    5.6250</code></pre>
-<pre class="r"><code>t.test(BatmanIn, Top5, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre class="r"><code>t.test(BatmanIn, Top5, alternative=&quot;greater&quot;, conf.level=0.95,paired = FALSE)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  BatmanIn and Top5
 ## t = 11.601, df = 60.556, p-value &lt; 2.2e-16
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means is greater than 0
 ## 95 percent confidence interval:
-##  4.444109 6.295474
+##  4.596627      Inf
 ## sample estimates:
 ## mean of x mean of y 
 ##  9.937500  4.567708</code></pre>
-<pre class="r"><code>t.test(BatmanIn, allChar, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre class="r"><code>t.test(BatmanIn, allChar, alternative=&quot;greater&quot;, conf.level=0.95,paired = FALSE)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  BatmanIn and allChar
 ## t = 19.039, df = 48.318, p-value &lt; 2.2e-16
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means is greater than 0
 ## 95 percent confidence interval:
-##  7.440566 9.197365
+##  7.586196      Inf
 ## sample estimates:
 ## mean of x mean of y 
 ##  9.937500  1.618534</code></pre>
@@ -649,6 +649,58 @@ charSales &lt;- read_excel(&quot;CharacterSales.xlsx&quot;)
 AoCSales &lt;- read_excel(&quot;AoCCharacterSales.xlsx&quot;)
 new52Sales &lt;- read_excel(&quot;New52CharacterSales.xlsx&quot;)
 new52SalesSwitch &lt;- read_excel(&quot;New52SwitchSales.xlsx&quot;)</code></pre>
+<pre><code>## New names:
+## • `Aquaman` -&gt; `Aquaman...4`
+## • `Flash (Wally)` -&gt; `Flash (Wally)...7`
+## • `Green Lantern (Hal)` -&gt; `Green Lantern (Hal)...8`
+## • `Martian Manhunter` -&gt; `Martian Manhunter...9`
+## • `Shazam` -&gt; `Shazam...10`
+## • `Green Arrow` -&gt; `Green Arrow...11`
+## • `Cyborg` -&gt; `Cyborg...12`
+## • `Supergirl` -&gt; `Supergirl...13`
+## • `Hawkman` -&gt; `Hawkman...14`
+## • `Green Lantern (John)` -&gt; `Green Lantern (John)...15`
+## • `Green Lantern (Kyle)` -&gt; `Green Lantern (Kyle)...16`
+## • `Black Canary` -&gt; `Black Canary...17`
+## • `Batgirl` -&gt; `Batgirl...18`
+## • `Zatanna` -&gt; `Zatanna...19`
+## • `John Constantine` -&gt; `John Constantine...20`
+## • `Starfire` -&gt; `Starfire...21`
+## • `Dr Fate` -&gt; `Dr Fate...22`
+## • `Blue Beetle (Jaime)` -&gt; `Blue Beetle (Jaime)...23`
+## • `Booster Gold` -&gt; `Booster Gold...24`
+## • `Swamp Thing` -&gt; `Swamp Thing...25`
+## • `Joker` -&gt; `Joker...26`
+## • `Lex Luthor` -&gt; `Lex Luthor...27`
+## • `Harley Quinn` -&gt; `Harley Quinn...28`
+## • `Deathstroke` -&gt; `Deathstroke...29`
+## • `Catwoman` -&gt; `Catwoman...30`
+## • `Aquaman` -&gt; `Aquaman...34`
+## • `Flash (Wally)` -&gt; `Flash (Wally)...37`
+## • `Green Lantern (Hal)` -&gt; `Green Lantern (Hal)...38`
+## • `Martian Manhunter` -&gt; `Martian Manhunter...39`
+## • `Shazam` -&gt; `Shazam...40`
+## • `Green Arrow` -&gt; `Green Arrow...41`
+## • `Cyborg` -&gt; `Cyborg...42`
+## • `Supergirl` -&gt; `Supergirl...43`
+## • `Hawkman` -&gt; `Hawkman...44`
+## • `Green Lantern (John)` -&gt; `Green Lantern (John)...45`
+## • `Green Lantern (Kyle)` -&gt; `Green Lantern (Kyle)...46`
+## • `Black Canary` -&gt; `Black Canary...47`
+## • `Batgirl` -&gt; `Batgirl...48`
+## • `Zatanna` -&gt; `Zatanna...49`
+## • `John Constantine` -&gt; `John Constantine...50`
+## • `Starfire` -&gt; `Starfire...51`
+## • `Dr Fate` -&gt; `Dr Fate...52`
+## • `Blue Beetle (Jaime)` -&gt; `Blue Beetle (Jaime)...53`
+## • `Booster Gold` -&gt; `Booster Gold...54`
+## • `Swamp Thing` -&gt; `Swamp Thing...55`
+## • `Joker` -&gt; `Joker...56`
+## • `Lex Luthor` -&gt; `Lex Luthor...57`
+## • `Harley Quinn` -&gt; `Harley Quinn...58`
+## • `Deathstroke` -&gt; `Deathstroke...59`
+## • `Catwoman` -&gt; `Catwoman...60`</code></pre>
+<pre class="r"><code>new52Sales1Switch &lt;- read_excel(&quot;New52Switch1Sales.xlsx&quot;)</code></pre>
 <pre><code>## New names:
 ## • `Aquaman` -&gt; `Aquaman...4`
 ## • `Flash (Wally)` -&gt; `Flash (Wally)...7`
@@ -749,7 +801,55 @@ RebirthSalesSwitch &lt;- read_excel(&quot;RebirthSwitchSales.xlsx&quot;)</code><
 ## • `Harley Quinn` -&gt; `Harley Quinn...58`
 ## • `Deathstroke` -&gt; `Deathstroke...59`
 ## • `Catwoman` -&gt; `Catwoman...60`</code></pre>
-<pre class="r"><code>View(new52SalesSwitch)</code></pre>
+<pre class="r"><code>RebirthSales1Switch &lt;- read_excel(&quot;RebirthSwitch1Sales.xlsx&quot;)</code></pre>
+<pre><code>## New names:
+## • `Green Lantern (Hal)` -&gt; `Green Lantern (Hal)...8`
+## • `Martian Manhunter` -&gt; `Martian Manhunter...9`
+## • `Shazam` -&gt; `Shazam...10`
+## • `Green Arrow` -&gt; `Green Arrow...11`
+## • `Cyborg` -&gt; `Cyborg...12`
+## • `Supergirl` -&gt; `Supergirl...13`
+## • `Hawkman` -&gt; `Hawkman...14`
+## • `Green Lantern (John)` -&gt; `Green Lantern (John)...15`
+## • `Green Lantern (Kyle)` -&gt; `Green Lantern (Kyle)...16`
+## • `Black Canary` -&gt; `Black Canary...17`
+## • `Batgirl` -&gt; `Batgirl...18`
+## • `Zatanna` -&gt; `Zatanna...19`
+## • `John Constantine` -&gt; `John Constantine...20`
+## • `Starfire` -&gt; `Starfire...21`
+## • `Dr Fate` -&gt; `Dr Fate...22`
+## • `Blue Beetle (Jaime)` -&gt; `Blue Beetle (Jaime)...23`
+## • `Booster Gold` -&gt; `Booster Gold...24`
+## • `Swamp Thing` -&gt; `Swamp Thing...25`
+## • `Joker` -&gt; `Joker...26`
+## • `Lex Luthor` -&gt; `Lex Luthor...27`
+## • `Harley Quinn` -&gt; `Harley Quinn...28`
+## • `Deathstroke` -&gt; `Deathstroke...29`
+## • `Catwoman` -&gt; `Catwoman...30`
+## • `Green Lantern (Hal)` -&gt; `Green Lantern (Hal)...38`
+## • `Martian Manhunter` -&gt; `Martian Manhunter...39`
+## • `Shazam` -&gt; `Shazam...40`
+## • `Green Arrow` -&gt; `Green Arrow...41`
+## • `Cyborg` -&gt; `Cyborg...42`
+## • `Supergirl` -&gt; `Supergirl...43`
+## • `Hawkman` -&gt; `Hawkman...44`
+## • `Green Lantern (John)` -&gt; `Green Lantern (John)...45`
+## • `Green Lantern (Kyle)` -&gt; `Green Lantern (Kyle)...46`
+## • `Black Canary` -&gt; `Black Canary...47`
+## • `Batgirl` -&gt; `Batgirl...48`
+## • `Zatanna` -&gt; `Zatanna...49`
+## • `John Constantine` -&gt; `John Constantine...50`
+## • `Starfire` -&gt; `Starfire...51`
+## • `Dr Fate` -&gt; `Dr Fate...52`
+## • `Blue Beetle (Jaime)` -&gt; `Blue Beetle (Jaime)...53`
+## • `Booster Gold` -&gt; `Booster Gold...54`
+## • `Swamp Thing` -&gt; `Swamp Thing...55`
+## • `Joker` -&gt; `Joker...56`
+## • `Lex Luthor` -&gt; `Lex Luthor...57`
+## • `Harley Quinn` -&gt; `Harley Quinn...58`
+## • `Deathstroke` -&gt; `Deathstroke...59`
+## • `Catwoman` -&gt; `Catwoman...60`</code></pre>
+<pre class="r"><code>#View(new52SalesSwitch)</code></pre>
 <pre class="r"><code>BatmanSales &lt;- charSales$Batman
 SupermanSales &lt;- charSales$Superman
 WonderWomanSales &lt;- charSales$`Wonder Woman`
@@ -850,7 +950,28 @@ WonderWomanRebirthSwitch2 &lt;- RebirthSalesSwitch$`Wonder Woman 2`
 FlashRebirthSwitch &lt;- RebirthSalesSwitch$`Flash (Barry)`
 FlashRebirthSwitch2 &lt;- RebirthSalesSwitch$`Flash (Barry) 2`
 NightwingRebirthSwitch &lt;- RebirthSalesSwitch$Nightwing
-NightwingRebirthSwitch2 &lt;- RebirthSalesSwitch$`Nightwing 2`</code></pre>
+NightwingRebirthSwitch2 &lt;- RebirthSalesSwitch$`Nightwing 2`
+
+BatmanNew521Switch &lt;- new52Sales1Switch$Batman
+BatmanNew521Switch2 &lt;- new52Sales1Switch$`Batman 2`
+SupermanNew521Switch &lt;- new52Sales1Switch$Superman
+SupermanNew521Switch2 &lt;- new52Sales1Switch$`Superman 2`
+WonderWomanNew521Switch &lt;- new52Sales1Switch$`Wonder Woman`
+WonderWomanNew521Switch2 &lt;- new52Sales1Switch$`Wonder Woman 2`
+FlashNew521Switch &lt;- new52Sales1Switch$`Flash (Barry)`
+FlashNew521Switch2 &lt;- new52Sales1Switch$`Flash (Barry) 2`
+NightwingNew521Switch &lt;- new52Sales1Switch$Nightwing
+NightwingNew521Switch2 &lt;- new52Sales1Switch$`Nightwing 2`
+BatmanRebirth1Switch &lt;- RebirthSales1Switch$Batman
+BatmanRebirth1Switch2 &lt;- RebirthSales1Switch$`Batman 2`
+SupermanRebirth1Switch &lt;- RebirthSales1Switch$Superman
+SupermanRebirth1Switch2 &lt;- RebirthSales1Switch$`Superman 2`
+WonderWomanRebirth1Switch &lt;- RebirthSales1Switch$`Wonder Woman`
+WonderWomanRebirth1Switch2 &lt;- RebirthSales1Switch$`Wonder Woman 2`
+FlashRebirth1Switch &lt;- RebirthSales1Switch$`Flash (Barry)`
+FlashRebirth1Switch2 &lt;- RebirthSales1Switch$`Flash (Barry) 2`
+NightwingRebirth1Switch &lt;- RebirthSales1Switch$Nightwing
+NightwingRebirth1Switch2 &lt;- RebirthSales1Switch$`Nightwing 2`</code></pre>
 <pre class="r"><code>t.test(BatmanAoCSales, BatmanNew52Sales, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
@@ -899,6 +1020,30 @@ NightwingRebirthSwitch2 &lt;- RebirthSalesSwitch$`Nightwing 2`</code></pre>
 ## sample estimates:
 ## mean of x mean of y 
 ##   1794470   2386025</code></pre>
+<pre class="r"><code>t.test(BatmanNew521Switch,BatmanNew521Switch2, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  BatmanNew521Switch and BatmanNew521Switch2
+## t = -3.0462, df = 16.982, p-value = 0.007304
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -1131568.2  -205466.6
+## sample estimates:
+## mean of x mean of y 
+##   1110053   1778570</code></pre>
+<pre class="r"><code>t.test(BatmanRebirth1Switch,BatmanRebirth1Switch2, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  BatmanRebirth1Switch and BatmanRebirth1Switch2
+## t = -3.7474, df = 21.958, p-value = 0.001117
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -1483973.8  -426538.1
+## sample estimates:
+## mean of x mean of y 
+##   1449756   2405012</code></pre>
 <pre class="r"><code>t.test(SupermanAoCSales, SupermanNew52Sales, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
@@ -947,6 +1092,30 @@ NightwingRebirthSwitch2 &lt;- RebirthSalesSwitch$`Nightwing 2`</code></pre>
 ## sample estimates:
 ## mean of x mean of y 
 ##  880191.4 1610810.2</code></pre>
+<pre class="r"><code>t.test(SupermanNew521Switch,SupermanNew521Switch2, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  SupermanNew521Switch and SupermanNew521Switch2
+## t = -0.36567, df = 23.829, p-value = 0.7178
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -291328.3  203661.2
+## sample estimates:
+## mean of x mean of y 
+##  510504.9  554338.5</code></pre>
+<pre class="r"><code>t.test(SupermanRebirth1Switch,SupermanRebirth1Switch2, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  SupermanRebirth1Switch and SupermanRebirth1Switch2
+## t = -1.6065, df = 21.538, p-value = 0.1227
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -724216.71   92422.22
+## sample estimates:
+## mean of x mean of y 
+##  959079.5 1274976.7</code></pre>
 <pre class="r"><code>t.test(WonderWomanAoCSales, WonderWomanNew52Sales, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
@@ -995,6 +1164,30 @@ NightwingRebirthSwitch2 &lt;- RebirthSalesSwitch$`Nightwing 2`</code></pre>
 ## sample estimates:
 ## mean of x mean of y 
 ##  592225.6 1076983.0</code></pre>
+<pre class="r"><code>t.test(WonderWomanNew521Switch,WonderWomanNew521Switch2, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  WonderWomanNew521Switch and WonderWomanNew521Switch2
+## t = 1.7002, df = 16.849, p-value = 0.1075
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -30110.45 279196.02
+## sample estimates:
+## mean of x mean of y 
+##  347330.2  222787.4</code></pre>
+<pre class="r"><code>t.test(WonderWomanRebirth1Switch,WonderWomanRebirth1Switch2, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  WonderWomanRebirth1Switch and WonderWomanRebirth1Switch2
+## t = -1.9021, df = 16.518, p-value = 0.07474
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -839835.50   44414.96
+## sample estimates:
+## mean of x mean of y 
+##    632108   1029818</code></pre>
 <pre class="r"><code>t.test(FlashAoCSales, FlashNew52Sales, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
@@ -1043,6 +1236,30 @@ NightwingRebirthSwitch2 &lt;- RebirthSalesSwitch$`Nightwing 2`</code></pre>
 ## sample estimates:
 ## mean of x mean of y 
 ##  466682.4 1101599.6</code></pre>
+<pre class="r"><code>t.test(FlashNew521Switch,FlashNew521Switch2, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  FlashNew521Switch and FlashNew521Switch2
+## t = 1.3929, df = 15.226, p-value = 0.1836
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -80547.18 385523.26
+## sample estimates:
+## mean of x mean of y 
+##  443056.7  290568.7</code></pre>
+<pre class="r"><code>t.test(FlashRebirth1Switch,FlashRebirth1Switch2, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  FlashRebirth1Switch and FlashRebirth1Switch2
+## t = -2.6733, df = 22.326, p-value = 0.01378
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -913278.6 -115704.6
+## sample estimates:
+## mean of x mean of y 
+##  535486.1 1049977.7</code></pre>
 <pre class="r"><code>t.test(NightwingAoCSales, NightwingNew52Sales, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
@@ -1091,6 +1308,30 @@ NightwingRebirthSwitch2 &lt;- RebirthSalesSwitch$`Nightwing 2`</code></pre>
 ## sample estimates:
 ## mean of x mean of y 
 ##  368389.6  499734.5</code></pre>
+<pre class="r"><code>t.test(NightwingNew521Switch,NightwingNew521Switch2, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  NightwingNew521Switch and NightwingNew521Switch2
+## t = 2.9697, df = 23.819, p-value = 0.006701
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  116630.6 648813.6
+## sample estimates:
+## mean of x mean of y 
+## 1058132.9  675410.8</code></pre>
+<pre class="r"><code>t.test(NightwingRebirth1Switch,NightwingRebirth1Switch2, alternative=&quot;two.sided&quot;, conf.level=0.95,paired = FALSE)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  NightwingRebirth1Switch and NightwingRebirth1Switch2
+## t = 0.23721, df = 20.89, p-value = 0.8148
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -297846.8  374516.7
+## sample estimates:
+## mean of x mean of y 
+##  537996.4  499661.5</code></pre>
 </div>
 
 
